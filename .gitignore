@@ -1,0 +1,7 @@
+*.log
+*.xml
+*.html
+*.png
+*.swp
+*.csv
+playwright-log.txt
