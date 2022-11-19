@@ -26,8 +26,14 @@ and charging their Edenred cards by uploading a specially formatted CSV file
 This Robot script allows you to charge employee Edenred cards. It depends on
 the
 [Browser](https://marketsquare.github.io/robotframework-browser/Browser.html)
-library. Credentials and the path to the CSV file are passed as environment
+and
+[String](https://robotframework.org/robotframework/2.1.2/libraries/String.html)
+libraries. Credentials and the path to the CSV file are passed as environment
 variables.
+
+As the charging process seems to be somewhat unreliable, the script verifies
+the date of the latest (CSV) order and its status in attempt to catch any
+charging errors.
 
 This script probably will not work for other CSV operations which may or may
 not present the user (or Robot) with completely different prompts.
