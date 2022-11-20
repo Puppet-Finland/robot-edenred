@@ -12,9 +12,10 @@ ${BROWSER}  firefox
 ${EDENRED_MAIN_PAGE}  https://ticket.edenred.fi
 
 # Parameters are taken from environment variables
-${EDENRED_USERNAME}   %{EDENRED_USERNAME}
-${EDENRED_PASSWORD}   %{EDENRED_PASSWORD}
-${CSV_FILE_PATH}      %{CSV_FILE_PATH}
+${EDENRED_USERNAME}        %{EDENRED_USERNAME}
+${EDENRED_PASSWORD}        %{EDENRED_PASSWORD}
+${LOUNAS_CSV_FILE_PATH}    %{LOUNAS_CSV_FILE_PATH}
+${TYOMATKA_CSV_FILE_PATH}  %{TYOMATKA_CSV_FILE_PATH}
 
 *** Keywords ***
 
@@ -35,18 +36,38 @@ Login To Edenred
 Go To Lounas Card
   Browser.Click  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneMain_EdenredFi_WOT_CardSelection_CardSelection_lnkTD
 
+Go To Tyomatka Card
+  Browser.Click  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneMain_EdenredFi_WOT_CardSelection_CardSelection_lnkTT
+
 Go To CSV Charging
   Browser.Click  text=Työntekijöiden hallinta
   Browser.Click  text=Päivitys csv-tiedostolla
 
-Charge Lounas Card With CSV
+Upload CSV
+  [Arguments]  ${CSV_FILE_PATH}
   Upload File By Selector  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_FileUpload  ${CSV_FILE_PATH}
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnUpload
+
+Select Charge Date
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_datePicker_btnNow
-  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_datePicker2_btnNow
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnSubmit
+
+Submit Charge Order
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_cdlgSubmit_confirmCheckBox
+  # Comment out the following line to test the whole process without actually submitting the order
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_cdlgSubmit_btnSubmit
+  # It looks like the orders fail often if the browser exits too quickly after placing the order
+  BuiltIn.Sleep  3
+
+Charge Lounas Card With CSV
+  Upload CSV  ${LOUNAS_CSV_FILE_PATH}
+  Select Charge Date
+  Submit Charge Order
+
+Charge Tyomatka Card With CSV
+  Upload CSV  ${TYOMATKA_CSV_FILE_PATH}
+  Select Charge Date
+  Submit Charge Order
 
 Validate Latest CSV Order
   # Get the latest order date and status
