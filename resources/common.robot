@@ -21,6 +21,7 @@ ${TYOMATKA_CSV_FILE_PATH}  %{TYOMATKA_CSV_FILE_PATH}
 
 Begin Browser Web Test
     Browser.New Browser  ${BROWSER}  false
+    Browser.Set Browser Timeout  1m
 
 End Browser Web Test
     Browser.Close Browser
