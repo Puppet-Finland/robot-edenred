@@ -49,7 +49,13 @@ Upload CSV
   Upload File By Selector  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_FileUpload  ${CSV_FILE_PATH}
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnUpload
 
-Select Charge Date
+# There are two charge dates to select (Lounas and Virike)
+Select Charge Date Lounas
+  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_datePicker_btnNow
+  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_datePicker2_btnNow
+  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnSubmit
+
+Select Charge Date Tyomatka
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_datePicker_btnNow
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnSubmit
 
@@ -62,12 +68,12 @@ Submit Charge Order
 
 Charge Lounas Card With CSV
   Upload CSV  ${LOUNAS_CSV_FILE_PATH}
-  Select Charge Date
+  Select Charge Date Lounas
   Submit Charge Order
 
 Charge Tyomatka Card With CSV
   Upload CSV  ${TYOMATKA_CSV_FILE_PATH}
-  Select Charge Date
+  Select Charge Date Tyomatka
   Submit Charge Order
 
 Validate Latest CSV Order
