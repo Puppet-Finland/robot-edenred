@@ -77,7 +77,13 @@ Charge Tyomatka Card With CSV
   Submit Charge Order
 
 Validate Latest CSV Order
-  # Get the latest order date and status
+  # This check is done from the CSV file loading page, which has a
+  # "Tiedostohistoria" (file history) table at the bottom. That table is not to
+  # be confused with the "Historia" (history) page reachable from the main
+  # Edenred page, which shows the billing status of the placed orders.
+
+  # Get the date for the latest CSV file that was successfully uploaded. A
+  # successful CSV file upload implies a successful order.
   ${order_history_table}=    BuiltIn.Set Variable  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_historyGrid_uniGridControl_v
 
   # Get the text in the topmost row's "Päivämäärä" ("date") column
@@ -88,11 +94,11 @@ Validate Latest CSV Order
   ${latest_order_status_table_element_id}=  Browser.Get Table Cell Element  ${order_history_table}  2  1
   ${latest_order_status}=  Browser.Get Text  ${latest_order_status_table_element_id}
 
-  # Check that the timestamp of the latest order is today: if not we're looking
-  # at and obsolete entry. Edenred web interface displays dates in dd.mm.yyyy
-  # hh:mm:ss format _without_ zero padding so we need to convert Get Time's
-  # zero padded values on the fly. Examples of what ${current_date} will look
-  # like this:
+  # Check that the timestamp of the latest CSV file is today: if not we're
+  # looking at and obsolete entry. Edenred web interface displays dates in
+  # dd.mm.yyyy hh:mm:ss format _without_ zero padding so we need to convert Get
+  # Time's zero padded values on the fly. Examples of what ${current_date} will
+  # look like this:
   #
   # 7.11.2022
   # 19.11.2022
@@ -111,8 +117,8 @@ Validate Latest CSV Order
   ${current_year}=  BuiltIn.Get Time  year  NOW
   ${current_date}=  BuiltIn.Catenate  SEPARATOR=.  ${current_day}  ${current_month}  ${current_year}
 
-  # Check if the latest order is from today
+  # Check if the latest CSV order is from today
   BuiltIn.Should Start With  ${latest_order_time}  ${current_date}
 
-  # Check if the latest order was successful
+  # Check if the latest CSV order was successful
   BuiltIn.Should Be Equal As Strings  ${latest_order_status}  onnistunut
