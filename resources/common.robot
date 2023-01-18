@@ -46,8 +46,8 @@ Go To CSV Charging
 
 Upload CSV
   [Arguments]  ${CSV_FILE_PATH}
-  Upload File By Selector  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_FileUpload  ${CSV_FILE_PATH}
-  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnUpload
+  Browser.Upload File By Selector  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_FileUpload  ${CSV_FILE_PATH}
+  Browser.Click                    id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnUpload
 
 # There are two charge dates to select (Lounas and Virike)
 Select Charge Date Lounas
@@ -64,7 +64,7 @@ Submit Charge Order
   # Comment out the following line to test the whole process without actually submitting the order
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_cdlgSubmit_btnSubmit
   # It looks like the orders fail often if the browser exits too quickly after placing the order
-  BuiltIn.Sleep  3
+  BuiltIn.Sleep            3
 
 Charge Lounas Card With CSV
   Upload CSV  ${LOUNAS_CSV_FILE_PATH}
