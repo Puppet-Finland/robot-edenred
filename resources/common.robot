@@ -60,8 +60,6 @@ Select Charge Date Tyomatka
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_btnSubmit
 
 Submit Charge Order
-  Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_cdlgSubmit_confirmCheckBox
-  # Comment out the following line to test the whole process without actually submitting the order
   Browser.Click            id=p_lt_zoneContent_pageplaceholder_p_lt_zoneBottom_EdenredFi_WOT_CardHolderManagement_CardHolderFile_cdlgSubmit_btnSubmit
   # It looks like the orders fail often if the browser exits too quickly after placing the order
   BuiltIn.Sleep            3
