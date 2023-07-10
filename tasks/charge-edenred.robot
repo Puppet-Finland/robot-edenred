@@ -9,24 +9,28 @@ Task Teardown  End Browser Web Test
 
 Charge Lounas Edenred
   Login To Edenred
+  Select Finnish Language
   Go To Lounas Card
   Go To CSV Charging
   Charge Lounas Card With CSV
 
 Verify Lounas Charge
   Login To Edenred
+  Select Finnish Language
   Go To Lounas Card
   Go To CSV Charging
   Validate Latest CSV Order
 
 Charge Tyomatka Edenred
   Login To Edenred
+  Select Finnish Language
   Go To Tyomatka Card
   Go To CSV Charging
   Charge Tyomatka Card With CSV
 
 Verify Tyomatka Charge
   Login To Edenred
+  Select Finnish Language
   Go To Tyomatka Card
   Go To CSV Charging
   Validate Latest CSV Order

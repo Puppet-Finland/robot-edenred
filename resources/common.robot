@@ -34,6 +34,9 @@ Login To Edenred
   Browser.Click                       id=p_lt_zoneContent_pageplaceholder_p_lt_zoneMain_EdenredFi_WOT_LogonForm_Login1_LoginButton
   Browser.Wait Until Network Is Idle  timeout=5s
 
+Select Finnish Language
+  Browser.Click  text="FI"
+
 Go To Lounas Card
   Browser.Click  id=p_lt_zoneContent_pageplaceholder_p_lt_zoneMain_EdenredFi_WOT_CardSelection_CardSelection_lnkTD
 
