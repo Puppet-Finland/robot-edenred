@@ -15,6 +15,21 @@ Robot scripts tend to be fairly reliable, we recommend monitoring them with
 way, if the Edenred website ever changes and the script break, you get an
 alert.
 
+# Tested operating systems
+
+This script has been tested on Fedora 36 and 38. Other operating systems with
+recent Python 3 versions should work.
+
+# Installing prerequisites
+
+You can (or should) install the prerequisites with pip3:
+
+    $ pip3 install robotframework robotframework-browser
+
+Then initialize the Browser library:
+
+    $ rfbrowser init
+
 # Mass operations using CSV files
 
 Edenred cards can be charged with the following benefits:
@@ -99,8 +114,6 @@ and
 [String](https://robotframework.org/robotframework/2.1.2/libraries/String.html)
 libraries. Credentials and the path to the CSV file are passed as environment
 variables.
-
-
 
 As the charging process seems to be somewhat unreliable, the script verifies
 the date of the latest (CSV) order and its status in attempt to catch any
