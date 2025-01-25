@@ -20,7 +20,7 @@ ${TYOMATKA_CSV_FILE_PATH}  %{TYOMATKA_CSV_FILE_PATH}
 *** Keywords ***
 
 Begin Browser Web Test
-    Browser.New Browser  ${BROWSER}  false
+    Browser.New Browser  ${BROWSER}  true
     Browser.Set Browser Timeout  1m
 
 End Browser Web Test
