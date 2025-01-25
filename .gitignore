@@ -4,4 +4,5 @@
 *.png
 *.swp
 *.csv
+.env
 playwright-log.txt

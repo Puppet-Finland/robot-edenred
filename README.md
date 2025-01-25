@@ -125,3 +125,22 @@ not present the user (or Robot) with completely different prompts.
 Example usage from a Linux terminal:
 
     EDENRED_USERNAME=my_email EDENRED_PASSWORD=secret LOUNAS_CSV_FILE_PATH=normaali-lounas-virike.csv TYOMATKA_CSV_FILE_PATH=normaali-tyomatka.csv robot tasks/charge-edenred.robot
+
+# Running in a Podman container
+
+Create an environment file (.env) in the root of the repository:
+
+    EDENRED_USERNAME=my_email
+    EDENRED_PASSWORD=secret
+    LOUNAS_CSV_FILE_PATH=/home/ubuntu/robot-edenred/normaali-lounas-virike.csv
+    TYOMATKA_CSV_FILE_PATH=/home/ubuntu/robot-edenred/normaali-tyomatka.csv
+
+Create the .csv files as per documentation above.
+
+Build the container image:
+
+    podman build -t robot-edenred .
+
+Run the container:
+
+    podman run -it --env-file .env -v .:/home/ubuntu/robot-edenred:rw,z robot-edenred:latest
